@@ -14,19 +14,22 @@ public class JdbcExample {
     String username = "root";
     String password = "Qwerasdfzxcv1234";
 
+    Statement statement = null;
+    ResultSet resultSet = null;
+    Connection conn = null;
 
 
     try {
       // connect to the database
-      Connection conn = DriverManager.getConnection(dbUrl, username, password);
+      conn = DriverManager.getConnection(dbUrl, username, password);
       System.out.println("Connecting to database successfully");
       // Execute the sql statements, you need a statement to execute from MySQL. .createStatement() is
       // from JDBC to help execute
-      Statement statement = conn.createStatement();
+      statement = conn.createStatement();
 
       //executeQuery returns a resultSet and needs the statement object. for reading u use .executeQuery.
       // when writing you use .execute
-      ResultSet resultSet = statement.executeQuery("SELECT * FROM table_of_puppies");
+      resultSet = statement.executeQuery("SELECT * FROM table_of_puppies");
       statement.execute("INSERT INTO table_of_puppies VALUES(NULL, 'Jack', 44)");
 
 
